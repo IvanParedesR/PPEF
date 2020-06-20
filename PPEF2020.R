@@ -51,6 +51,9 @@ if (length(replacement)){
   URBase$UR[to.replace] <- URBase$UR[replacement]
 } 
 
+URBase <- URBase[-c(1, 2), ]
+
+
 isNA <- as.numeric(is.na(URBase$PARTIDA))
 replacement <- fill.NAs(isNA)
 if (length(replacement)){
