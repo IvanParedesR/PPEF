@@ -1,10 +1,11 @@
 library(readxl)
 #https://www.ppef.hacienda.gob.mx/work/models/PPEF2020/analiticosPresupuestarios/Proyecto/ac01_ra_ur_og.xlsx
 #Análisis por Unidad Responsable
-UR <- read_excel("ac01_ra_ur_og.xlsx",
+URBase <- read_excel("ac01_ra_ur_og.xlsx",
 range = "A12:F86279")
-View(UR)
 
+library(zoo)
+View(URBase)
 
 last <- function (x){
   x[length(x)]
@@ -34,20 +35,36 @@ fill.NAs <- function(isNA){
   replacement
 }
 
-isNA <- as.numeric(is.na(UR$RAMO))
+isNA <- as.numeric(is.na(URBase$RAMO))
 replacement <- fill.NAs(isNA)
 if (length(replacement)){
   which.isNA <- which(as.logical(isNA))
   to.replace <- which.isNA[which(isNA==0)[1]:length(which.isNA)]
-  UR$RAMO[to.replace] <- UR$RAMO[replacement]
+  URBase$RAMO[to.replace] <- URBase$RAMO[replacement]
 } 
 
-isNA <- as.numeric(is.na(UR$UR))
+isNA <- as.numeric(is.na(URBase$UR))
 replacement <- fill.NAs(isNA)
 if (length(replacement)){
   which.isNA <- which(as.logical(isNA))
   to.replace <- which.isNA[which(isNA==0)[1]:length(which.isNA)]
-  UR$UR[to.replace] <- UR$UR[replacement]
+  URBase$UR[to.replace] <- URBase$UR[replacement]
 } 
 
+isNA <- as.numeric(is.na(URBase$PARTIDA))
+replacement <- fill.NAs(isNA)
+if (length(replacement)){
+  which.isNA <- which(as.logical(isNA))
+  to.replace <- which.isNA[which(isNA==0)[1]:length(which.isNA)]
+  URBase$PARTIDA[to.replace] <- URBase$PARTIDA[replacement]
+} 
 
+URBase <- URBase[-c(1, 2), ]
+
+install.packages("writexl")
+library("writexl")
+write_xlsx(URBase,"ac01.xlsx")
+
+sapply(URBase, function(x) sum(is.na(x)))
+
+View(URBase)
