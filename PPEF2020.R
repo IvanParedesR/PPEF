@@ -7,6 +7,8 @@ range = "A12:F86279")
 library(zoo)
 View(URBase)
 
+#generar función para repetir nombres
+
 last <- function (x){
   x[length(x)]
 }    
@@ -35,6 +37,7 @@ fill.NAs <- function(isNA){
   replacement
 }
 
+#Sustituir NA con valorprevio en Ramo
 isNA <- as.numeric(is.na(URBase$RAMO))
 replacement <- fill.NAs(isNA)
 if (length(replacement)){
@@ -43,6 +46,8 @@ if (length(replacement)){
   URBase$RAMO[to.replace] <- URBase$RAMO[replacement]
 } 
 
+
+#Sustituir NA con valorprevio en UR
 isNA <- as.numeric(is.na(URBase$UR))
 replacement <- fill.NAs(isNA)
 if (length(replacement)){
