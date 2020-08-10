@@ -62,9 +62,13 @@ library(tidyverse)
 Legis <- filter(URBase, RAMO == "01 Poder Legislativo")
 
 #Eliminamos primeros renglones de cada uno, que son las sumas
-URBase <- URBase[-c(1, 2), ]
+Legis <- Legis[-c(1, 2), ]
 
+#Ordenamos por UR
+by_UR <- group_by(Legis, UR)
+summarise(by_UR, delay = mean(Total, na.rm = TRUE))
 
+############# Pendiente
 isNA <- as.numeric(is.na(URBase$PARTIDA))
 replacement <- fill.NAs(isNA)
 if (length(replacement)){
