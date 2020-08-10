@@ -56,6 +56,12 @@ if (length(replacement)){
   URBase$UR[to.replace] <- URBase$UR[replacement]
 } 
 
+#Cargamos tidyverse
+library(tidyverse)
+#filtrar
+Legis <- filter(URBase, RAMO == "01 Poder Legislativo")
+
+#Eliminamos primeros renglones de cada uno, que son las sumas
 URBase <- URBase[-c(1, 2), ]
 
 
