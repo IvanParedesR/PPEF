@@ -60,21 +60,11 @@ COFECE2020 <- filter(PEF2020, RAMO == "41 ComisiÃ³n Federal de Competencia EconÃ
 
 
 
-#Eliminamos primeros renglones de cada uno, que son las sumas
-Legis <- Legis[-c(1, 2), ]
 
 #Ordenamos por UR
 by_UR <- group_by(Legis, UR)
 summarise(by_UR, delay = mean(Total, na.rm = TRUE))
 
-############# Pendiente
-isNA <- as.numeric(is.na(URBase$PARTIDA))
-replacement <- fill.NAs(isNA)
-if (length(replacement)){
-  which.isNA <- which(as.logical(isNA))
-  to.replace <- which.isNA[which(isNA==0)[1]:length(which.isNA)]
-  URBase$PARTIDA[to.replace] <- URBase$PARTIDA[replacement]
-} 
 
 URBase <- URBase[-c(1, 2), ]
 
