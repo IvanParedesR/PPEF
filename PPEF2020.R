@@ -50,20 +50,15 @@ View(PEF2018)
 View(PEF2019)
 View(PEF2020)
 
-#Sustituir NA con valorprevio en UR
-isNA <- as.numeric(is.na(URBase$UR))
-replacement <- fill.NAs(isNA)
-if (length(replacement)){
-  which.isNA <- which(as.logical(isNA))
-  to.replace <- which.isNA[which(isNA==0)[1]:length(which.isNA)]
-  URBase$UR[to.replace] <- URBase$UR[replacement]
-} 
-
-#Cargamos tidyverse
-library(tidyverse)
-
 #filtrar
-Legis <- filter(URBase, RAMO == "01 Poder Legislativo")
+COFECE2015 <- filter(PEF2015, RAMO == "41 Comisión Federal de Competencia Económica")
+COFECE2016 <- filter(PEF2016, RAMO == "41 Comisión Federal de Competencia Económica")
+COFECE2017 <- filter(PEF2017, RAMO == "41 Comisión Federal de Competencia Económica")
+COFECE2018 <- filter(PEF2018, RAMO == "41 Comisión Federal de Competencia Económica")
+COFECE2019 <- filter(PEF2019, RAMO == "41 Comisión Federal de Competencia Económica")
+COFECE2020 <- filter(PEF2020, RAMO == "41 Comisión Federal de Competencia Económica")
+
+
 
 #Eliminamos primeros renglones de cada uno, que son las sumas
 Legis <- Legis[-c(1, 2), ]
