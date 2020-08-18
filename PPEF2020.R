@@ -52,18 +52,23 @@ View(PEF2020)
 
 #filtrar
 COFECE2015 <- filter(PEF2015, RAMO == "41 Comisión Federal de Competencia Económica")
+COFECE2015 <- COFECE2015[-c(1, 1), ]
+COFECE2015$year <- 2015
 COFECE2016 <- filter(PEF2016, RAMO == "41 Comisión Federal de Competencia Económica")
+COFECE2016 <- COFECE2016[-c(1, 1), ]
 COFECE2017 <- filter(PEF2017, RAMO == "41 Comisión Federal de Competencia Económica")
+COFECE2017 <- COFECE2017[-c(1, 1), ]
 COFECE2018 <- filter(PEF2018, RAMO == "41 Comisión Federal de Competencia Económica")
+COFECE2018 <- COFECE2018[-c(1, 1), ]
 COFECE2019 <- filter(PEF2019, RAMO == "41 Comisión Federal de Competencia Económica")
+COFECE2019 <- COFECE2019[-c(1, 1), ]
 COFECE2020 <- filter(PEF2020, RAMO == "41 Comisión Federal de Competencia Económica")
-
-
-
+COFECE2020 <- COFECE2020[-c(1, 1), ]
 
 #Ordenamos por UR
-by_UR <- group_by(Legis, UR)
-summarise(by_UR, delay = mean(Total, na.rm = TRUE))
+by_UR <- group_by(COFECE2015, UR)
+COFECE2015 <- filter(COFECE2015, OG == "NA")
+summarise(by_UR, delay = sum(Total, na.rm = TRUE))
 
 
 URBase <- URBase[-c(1, 2), ]
@@ -72,7 +77,6 @@ install.packages("writexl")
 library("writexl")
 write_xlsx(URBase,"ac01.xlsx")
 
-sapply(URBase, function(x) sum(is.na(x)))
 
 View(URBase)
 
