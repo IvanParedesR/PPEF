@@ -65,25 +65,34 @@ COFECE2019 <- COFECE2019[-c(1, 1), ]
 COFECE2020 <- filter(PEF2020, RAMO == "41 Comisión Federal de Competencia Económica")
 COFECE2020 <- COFECE2020[-c(1, 1), ]
 
-#Ordenamos por UR
-by_UR <- group_by(COFECE2015, UR)
-COFECE2015 <- filter(COFECE2015, OG == "NA")
-summarise(by_UR, delay = sum(Total, na.rm = TRUE))
+#Ordenamos por UR 2015
+COFECE2015<- COFECE2015 %>% filter(!is.na(OG))
+by_UR15 <- group_by(COFECE2015, UR)
+summarise(by_UR15, delay = sum(Total, na.rm = FALSE))
+
+#Ordenamos por UR 2016
+COFECE2016<- COFECE2016 %>% filter(!is.na(OG))
+by_UR16 <- group_by(COFECE2016, UR)
+summarise(by_UR16, delay = sum(Total, na.rm = FALSE))
+
+#Ordenamos por UR 2017
+COFECE2017<- COFECE2017 %>% filter(!is.na(OG))
+by_UR17 <- group_by(COFECE2017, UR)
+summarise(by_UR17, delay = sum(Total, na.rm = FALSE))
+
+#Ordenamos por UR 2018
+COFECE2018<- COFECE2018 %>% filter(!is.na(PARTIDA))
+by_UR18 <- group_by(COFECE2018, UR )
+summarise(by_UR18, delay = sum(Total, na.rm = FALSE))
+
+#Ordenamos por UR 2019
+COFECE2019<- COFECE2019 %>% filter(!is.na(PARTIDA))
+by_UR19 <- group_by(COFECE2019, UR)
+summarise(by_UR19, delay = sum(Total, na.rm = FALSE))
+
+#Ordenamos por UR 2020
+COFECE2020<- COFECE2020 %>% filter(!is.na(PARTIDA))
+by_UR20 <- group_by(COFECE2020, UR)
+summarise(by_UR20, delay = sum(Total, na.rm = FALSE))
 
 
-URBase <- URBase[-c(1, 2), ]
-
-install.packages("writexl")
-library("writexl")
-write_xlsx(URBase,"ac01.xlsx")
-
-
-View(URBase)
-
-
-
-#https://www.ppef.hacienda.gob.mx/work/models/PPEF2020/analiticosPresupuestarios/Proyecto/ac01_ra_ur_og.xlsx
-#Análisis por Unidad Responsable
-URBase <- read_excel("ac01_ra_ur_og.xlsx",
-                     range = "A12:F86279")
-View(URBase)
