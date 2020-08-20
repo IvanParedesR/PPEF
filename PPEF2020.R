@@ -51,48 +51,55 @@ View(PEF2019)
 View(PEF2020)
 
 #filtrar
-COFECE2015 <- filter(PEF2015, RAMO == "41 Comisión Federal de Competencia Económica")
-COFECE2015 <- COFECE2015[-c(1, 1), ]
-COFECE2015$year <- 2015
-COFECE2016 <- filter(PEF2016, RAMO == "41 Comisión Federal de Competencia Económica")
-COFECE2016 <- COFECE2016[-c(1, 1), ]
-COFECE2017 <- filter(PEF2017, RAMO == "41 Comisión Federal de Competencia Económica")
-COFECE2017 <- COFECE2017[-c(1, 1), ]
-COFECE2018 <- filter(PEF2018, RAMO == "41 Comisión Federal de Competencia Económica")
-COFECE2018 <- COFECE2018[-c(1, 1), ]
-COFECE2019 <- filter(PEF2019, RAMO == "41 Comisión Federal de Competencia Económica")
-COFECE2019 <- COFECE2019[-c(1, 1), ]
-COFECE2020 <- filter(PEF2020, RAMO == "41 Comisión Federal de Competencia Económica")
-COFECE2020 <- COFECE2020[-c(1, 1), ]
+Institu2015 <- filter(PEF2015, RAMO == "41 Comisión Federal de Competencia Económica")
+Institu2015 <- Institu2015[-c(1, 1), ]
+Institu2015$year <- 2015
+Institu2016 <- filter(PEF2016, RAMO == "41 Comisión Federal de Competencia Económica")
+Institu2016 <- Institu2016[-c(1, 1), ]
+Institu2015$year <- 2016
+Institu2017 <- filter(PEF2017, RAMO == "41 Comisión Federal de Competencia Económica")
+Institu2017 <- Institu2017[-c(1, 1), ]
+Institu2015$year <- 2017
+Institu2018 <- filter(PEF2018, RAMO == "41 Comisión Federal de Competencia Económica")
+Institu2018 <- Institu2018[-c(1, 1), ]
+Institu2015$year <- 2018
+Institu2019 <- filter(PEF2019, RAMO == "41 Comisión Federal de Competencia Económica")
+Institu2019 <- Institu2019[-c(1, 1), ]
+Institu2015$year <- 2019
+Institu2020 <- filter(PEF2020, RAMO == "41 Comisión Federal de Competencia Económica")
+Institu2020 <- Institu2020[-c(1, 1), ]
+Institu2015$year <- 2020
+
 
 #Ordenamos por UR 2015
-COFECE2015<- COFECE2015 %>% filter(!is.na(OG))
-by_UR15 <- group_by(COFECE2015, UR)
+Institu2015<- Institu2015 %>% filter(!is.na(OG))
+by_UR15 <- group_by(Institu2015, UR)
 summarise(by_UR15, delay = sum(Total, na.rm = FALSE))
 
 #Ordenamos por UR 2016
-COFECE2016<- COFECE2016 %>% filter(!is.na(OG))
-by_UR16 <- group_by(COFECE2016, UR)
+Institu2016<- Institu2016 %>% filter(!is.na(OG))
+by_UR16 <- group_by(Institu2016, UR)
 summarise(by_UR16, delay = sum(Total, na.rm = FALSE))
 
 #Ordenamos por UR 2017
-COFECE2017<- COFECE2017 %>% filter(!is.na(OG))
-by_UR17 <- group_by(COFECE2017, UR)
+Institu2017<- Institu2017 %>% filter(!is.na(OG))
+by_UR17 <- group_by(Institu2017, UR)
 summarise(by_UR17, delay = sum(Total, na.rm = FALSE))
 
 #Ordenamos por UR 2018
-COFECE2018<- COFECE2018 %>% filter(!is.na(PARTIDA))
-by_UR18 <- group_by(COFECE2018, UR )
+Institu2018<- Institu2018 %>% filter(!is.na(PARTIDA))
+by_UR18 <- group_by(Institu2018, UR )
 summarise(by_UR18, delay = sum(Total, na.rm = FALSE))
 
 #Ordenamos por UR 2019
-COFECE2019<- COFECE2019 %>% filter(!is.na(PARTIDA))
-by_UR19 <- group_by(COFECE2019, UR)
+Institu2019<- Institu2019 %>% filter(!is.na(PARTIDA))
+by_UR19 <- group_by(Institu2019, UR)
 summarise(by_UR19, delay = sum(Total, na.rm = FALSE))
 
 #Ordenamos por UR 2020
-COFECE2020<- COFECE2020 %>% filter(!is.na(PARTIDA))
-by_UR20 <- group_by(COFECE2020, UR)
+Institu2020<- Institu2020 %>% filter(!is.na(PARTIDA))
+by_UR20 <- group_by(Institu2020, UR)
 summarise(by_UR20, delay = sum(Total, na.rm = FALSE))
+
 
 
