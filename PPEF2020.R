@@ -51,7 +51,7 @@ View(PEF2019)
 View(PEF2020)
 
 #filtrar
-Depen <- "02 Oficina de la Presidencia de la República"
+Depen <- "01 Poder Legislativo"
 
 Institu2015 <- filter(PEF2015, RAMO == Depen)
 Institu2015 <- Institu2015[-c(1, 1), ]
