@@ -1,4 +1,4 @@
-# Used packages
+# Paquetes instalados y cargados
 pacotes = c("shiny", "shinydashboard", "shinythemes", "plotly", "shinycssloaders","tidyverse",
             "scales", "knitr", "kableExtra", "ggfortify","dplyr","plotly","FNN")
 
@@ -12,4 +12,5 @@ package.check <- lapply(pacotes, FUN = function(x) {
 
 # Define working directory
 data <- read.table("PES2019.txt",header=TRUE,sep="\t")
+# Las Filas son los jugadores y las columnas los campos de datos
 names(data)[1] <- "player"  #rename from "ï..player" to "player"

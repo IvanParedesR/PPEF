@@ -1,5 +1,5 @@
 function(input, output, session) {
-  
+
   selectedData1 <- reactive({
     data %>%
       filter(data$player != gsub("[[:space:]]*$","",gsub("- .*",'',input$player))) 
