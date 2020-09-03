@@ -51,22 +51,24 @@ View(PEF2019)
 View(PEF2020)
 
 #filtrar
-Institu2015 <- filter(PEF2015, RAMO == "41 Comisión Federal de Competencia Económica")
+Depen <- "02 Oficina de la Presidencia de la República"
+
+Institu2015 <- filter(PEF2015, RAMO == Depen)
 Institu2015 <- Institu2015[-c(1, 1), ]
 Institu2015$year <- 2015
-Institu2016 <- filter(PEF2016, RAMO == "41 Comisión Federal de Competencia Económica")
+Institu2016 <- filter(PEF2016, RAMO == Depen)
 Institu2016 <- Institu2016[-c(1, 1), ]
 Institu2015$year <- 2016
-Institu2017 <- filter(PEF2017, RAMO == "41 Comisión Federal de Competencia Económica")
+Institu2017 <- filter(PEF2017, RAMO == Depen)
 Institu2017 <- Institu2017[-c(1, 1), ]
 Institu2015$year <- 2017
-Institu2018 <- filter(PEF2018, RAMO == "41 Comisión Federal de Competencia Económica")
+Institu2018 <- filter(PEF2018, RAMO == Depen)
 Institu2018 <- Institu2018[-c(1, 1), ]
 Institu2015$year <- 2018
-Institu2019 <- filter(PEF2019, RAMO == "41 Comisión Federal de Competencia Económica")
+Institu2019 <- filter(PEF2019, RAMO == Depen)
 Institu2019 <- Institu2019[-c(1, 1), ]
 Institu2015$year <- 2019
-Institu2020 <- filter(PEF2020, RAMO == "41 Comisión Federal de Competencia Económica")
+Institu2020 <- filter(PEF2020, RAMO == Depen)
 Institu2020 <- Institu2020[-c(1, 1), ]
 Institu2015$year <- 2020
 
