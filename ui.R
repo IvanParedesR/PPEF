@@ -1,4 +1,4 @@
-navbarPage("The ten most similar players - Pro Evolution Soccer 2019",
+navbarPage("PEF - PPEF",
            tabPanel("Graphic",fluidPage(theme = shinytheme("flatly")),
                     tags$head(
                       tags$style(HTML(".shiny-output-error-validation{color: red;}"))),

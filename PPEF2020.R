@@ -14,6 +14,25 @@ PEF2020 <- read_excel("2020-2016/ac01_ra_ur_og PEF2020.xlsx", col_names = TRUE, 
 require(tidyverse) #fill is part of tidyr
 
 PEF2015$RAMO <- na.locf(PEF2015$RAMO) # Apply na.locf function
+PEF2015$RAMO <- na.locf(PEF2015$RAMO, fromLast =TRUE) # Apply na.locf function
+PEF2015$UR[1] <- PEF2015$UR[2]
+PEF2015$UR <- na.locf(PEF2015$UR)
+PEF2015$OG[1] <- "XXXXX"
+PEF2015$OG[2] <- PEF2015$OG[2]
+PEF2015$OG <- na.locf(PEF2015$OG)
+
+PEF2015$EF[1] <- "YYYYY"
+PEF2015$EF[2] <- PEF2015$EF[2]
+PEF2015$EF <- na.locf(PEF2015$EF)
+
+PEF2015<- PEF2015 %>% filter(!is.na(CC))
+
+by_UR15 <- group_by(PEF2015, UR)
+summarise(by_UR15, delay = sum(Total, na.rm = FALSE))
+
+by_UR15 <- group_by(PEF2015, RAMO)
+summarise(by_UR15, delay = sum(Total, na.rm = FALSE))
+
 PEF2015 <- PEF2015[-c(1, 1), ]
 PEF2015$UR <- na.locf(PEF2015$UR)
 PEF2015 <- PEF2015[-c(1, 1), ]
@@ -43,13 +62,6 @@ PEF2020 <- PEF2020[-c(1, 1), ]
 PEF2020$UR <- na.locf(PEF2020$UR)
 PEF2020 <- PEF2020[-c(1, 1), ]
 
-View(PEF2016)
-View(PEF2015)
-View(PEF2017)
-View(PEF2018)
-View(PEF2019)
-View(PEF2020)
-
 #filtrar
 Depen <- "01 Poder Legislativo"
 
@@ -58,7 +70,7 @@ Institu2015 <- Institu2015[-c(1, 1), ]
 Institu2015$year <- 2015
 Institu2016 <- filter(PEF2016, RAMO == Depen)
 Institu2016 <- Institu2016[-c(1, 1), ]
-Institu2015$year <- 2016
+Institu2016$year <- 2016
 Institu2017 <- filter(PEF2017, RAMO == Depen)
 Institu2017 <- Institu2017[-c(1, 1), ]
 Institu2015$year <- 2017
