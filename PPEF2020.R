@@ -11,15 +11,22 @@ PEF2019 <- read_excel("2020-2016/ac01_ra_ur_og PEF2019.xlsx", col_names = TRUE, 
 PEF2020 <- read_excel("2020-2016/ac01_ra_ur_og PEF2020.xlsx", col_names = TRUE, skip = 11)
 
 
+dflist <- c("PEF2015", "PEF2016", "PEF2017")
+
+for (i in dflist) {
+  i$RAMO <- na.locf(i$RAMO)
+}
+
+
 require(tidyverse) #fill is part of tidyr
 
-PEF2015$RAMO <- na.locf(PEF2015$RAMO) # Apply na.locf function
-PEF2015$RAMO <- na.locf(PEF2015$RAMO, fromLast =TRUE) # Apply na.locf function
-PEF2015$UR[1] <- PEF2015$UR[2]
-PEF2015$UR <- na.locf(PEF2015$UR)
-PEF2015$OG[1] <- "XXXXX"
+PEF2015$RAMO <- na.locf(PEF2015$RAMO) # Todos los valores de la Variable Ramo que sean NA se sustituyen por el valor inmediato anterior
+PEF2015$RAMO <- na.locf(PEF2015$RAMO, fromLast =TRUE) # Todos los valores de la Variable Ramo que sean NA se sustituyen por el valor inmediato posterior
+PEF2015$UR[1] <- PEF2015$UR[2] #remplazamos el valor 2 con el siguiente para evitar matrices discordantees
+PEF2015$UR <- na.locf(PEF2015$UR) # Todos los valores de la Variable UR que sean NA se sustituyen por el valor inmediato anterior
+PEF2015$OG[1] <- "XXXXX" # Remplazamos variables por lo de matrices discordantes
 PEF2015$OG[2] <- PEF2015$OG[2]
-PEF2015$OG <- na.locf(PEF2015$OG)
+PEF2015$OG <- na.locf(PEF2015$OG) #Lo mismo para valores de OB
 
 PEF2015$EF[1] <- "YYYYY"
 PEF2015$EF[2] <- PEF2015$EF[2]
