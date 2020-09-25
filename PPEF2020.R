@@ -10,13 +10,12 @@ PEF2018 <- read_excel("2020-2016/ac01_ra_ur_og PEF2018.xlsx", col_names = TRUE, 
 PEF2019 <- read_excel("2020-2016/ac01_ra_ur_og PEF2019.xlsx", col_names = TRUE, skip = 11)
 PEF2020 <- read_excel("2020-2016/ac01_ra_ur_og PEF2020.xlsx", col_names = TRUE, skip = 11)
 
+means <- c(0, 1, 2)
 
-dflist <- c("PEF2015", "PEF2016", "PEF2017")
-
-for (i in dflist) {
-  i$RAMO <- na.locf(i$RAMO)
+for (i in seq_along(means)) {
+  n <- sample(100, 1)
+  output <- c(output, rnorm(n, means[[i]]))
 }
-
 
 require(tidyverse) #fill is part of tidyr
 
